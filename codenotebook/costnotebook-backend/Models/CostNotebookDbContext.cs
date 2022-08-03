@@ -13,9 +13,9 @@ namespace costnotebook_backend.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Test>()
-                .Property(r => r.Name)
-                .IsRequired()
-                .HasMaxLength(25);
+               .Property(r => r.Name)
+               .IsRequired()
+               .HasMaxLength(25);
         }
     }
 }
