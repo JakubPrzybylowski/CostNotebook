@@ -11,7 +11,6 @@
   "profiles": {
     "costnotebook_backend": {
       "commandName": "Project",
-      "workingDirectory": "C:\\Users\\Kubson\\source\\repos\\CostNotebook\\codenotebook-frontend\\codenotebook-frontend",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
