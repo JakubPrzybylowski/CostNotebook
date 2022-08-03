@@ -1,12 +1,21 @@
-<h1>Check Service</h1>
+<!-- Fixed navbar -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#">Cost Notebook</a>
+  <a class="navbar-brand" href="#">Profile</a>
+</nav>
+<div class="container-fluid text-center pb-5">
+  <div style="text-align:center">
+    <h1>
+      Welcome to Project!!!
+    </h1>
 
-<ul class="list-group">
-  <li *ngFor="let post of posts"
-      class="list-group-item">
-    <div>
-      {{post.id}} :
-      {{ post.name }}
-    </div>
+    <ul class="list-group">
 
-  </li>
-</ul>
+      <li *ngFor="let post of posts" class="list-group-item d-flex justify-content-between align-items-center">
+        {{post.name}}
+        <span class="badge rounded-pill bg-primary float-end">{{post.id}}</span>
+      </li>
+    </ul>
+    <button onclick="window.location.href='app.component.html'">Refresh</button>
+  </div>
+</div>
