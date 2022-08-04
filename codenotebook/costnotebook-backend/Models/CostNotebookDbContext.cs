@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using costnotebook_backend.Models.Seeders;
+using Microsoft.EntityFrameworkCore;
 
 namespace costnotebook_backend.Models
 {
@@ -12,10 +13,7 @@ namespace costnotebook_backend.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Test>()
-               .Property(r => r.Name)
-               .IsRequired()
-               .HasMaxLength(25);
+            modelBuilder.Seed();
         }
     }
 }
