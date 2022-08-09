@@ -6,12 +6,33 @@ public static class ModelBuilderExtensions
     public static void Seed(this ModelBuilder modelBuilder)
     {
         //Department
-        modelBuilder.Entity<Test>()
+        modelBuilder.Entity<User>()
             .HasData(
-               new Test { Id = 1, Name = "HR" },
-               new Test { Id = 2, Name = "Admin" },
-               new Test { Id = 3, Name = "Development" },
-               new Test { Id = 4, Name = "Test" }
+               new User { UserID = 1,
+                   FirstName = "Jakub",
+                   Password = "pass123",
+                   UserEmail="jakukprzybyl@gmail.com" },
+                new User
+                {
+                    UserID = 2,
+                    FirstName = "Krzysztof",
+                    Password = "pass123",
+                    UserEmail = "krzychudobrz@gmail.com"
+                },
+                new User
+                {
+                    UserID = 3,
+                    FirstName = "Łukasz",
+                    Password = "pass123",
+                    UserEmail = "lukaszprzybyl@gmail.com"
+                },
+                 new User
+                 {
+                     UserID = 4,
+                     FirstName = "Admin",
+                     Password = "admin",
+                     UserEmail = "admin@admin.com"
+                 }
         );
     }
 }

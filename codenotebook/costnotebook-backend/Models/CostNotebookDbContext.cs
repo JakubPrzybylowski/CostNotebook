@@ -1,4 +1,5 @@
 ﻿using costnotebook_backend.Models.Seeders;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace costnotebook_backend.Models
@@ -9,7 +10,7 @@ namespace costnotebook_backend.Models
         {
 
         }
-        public DbSet<Test> Tests { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

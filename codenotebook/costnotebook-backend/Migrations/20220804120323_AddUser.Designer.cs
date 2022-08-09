@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using costnotebook_backend.Models;
 
@@ -10,9 +11,10 @@ using costnotebook_backend.Models;
 namespace costnotebook_backend.Migrations
 {
     [DbContext(typeof(CostNotebookDbContext))]
-    partial class CostNotebookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220804120323_AddUser")]
+    partial class AddUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,17 +31,20 @@ namespace costnotebook_backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserID"), 1L, 1);
 
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserEmail")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserRoles")
+                        .HasColumnType("int");
 
                     b.HasKey("UserID");
 
@@ -49,30 +54,34 @@ namespace costnotebook_backend.Migrations
                         new
                         {
                             UserID = 1,
-                            FirstName = "Jakub",
                             Password = "pass123",
-                            UserEmail = "jakukprzybyl@gmail.com"
+                            UserEmail = "jakukprzybyl@gmail.com",
+                            UserName = "Jakub",
+                            UserRoles = 0
                         },
                         new
                         {
                             UserID = 2,
-                            FirstName = "Krzysztof",
                             Password = "pass123",
-                            UserEmail = "krzychudobrz@gmail.com"
+                            UserEmail = "krzychudobrz@gmail.com",
+                            UserName = "Krzysztof",
+                            UserRoles = 0
                         },
                         new
                         {
                             UserID = 3,
-                            FirstName = "Łukasz",
                             Password = "pass123",
-                            UserEmail = "lukaszprzybyl@gmail.com"
+                            UserEmail = "lukaszprzybyl@gmail.com",
+                            UserName = "Łukasz",
+                            UserRoles = 0
                         },
                         new
                         {
                             UserID = 4,
-                            FirstName = "Admin",
                             Password = "admin",
-                            UserEmail = "admin@admin.com"
+                            UserEmail = "admin@admin.com",
+                            UserName = "Admin",
+                            UserRoles = 1
                         });
                 });
 #pragma warning restore 612, 618

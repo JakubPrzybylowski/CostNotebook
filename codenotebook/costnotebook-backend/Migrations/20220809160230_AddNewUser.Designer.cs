@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using costnotebook_backend.Models;
 
@@ -10,9 +11,10 @@ using costnotebook_backend.Models;
 namespace costnotebook_backend.Migrations
 {
     [DbContext(typeof(CostNotebookDbContext))]
-    partial class CostNotebookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220809160230_AddNewUser")]
+    partial class AddNewUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
