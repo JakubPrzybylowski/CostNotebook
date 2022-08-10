@@ -9,6 +9,11 @@ namespace costnotebook_backend.Maps
         public MappingProfile()
         { 
             CreateMap<UserForRegistrationDto, User>();
+            CreateMap<Transaction, TransactionDto>()
+                .ForMember(dest => dest.Date,opt=>opt.MapFrom(src=>src.Date))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category))
+                .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount));
         }
     }
 }

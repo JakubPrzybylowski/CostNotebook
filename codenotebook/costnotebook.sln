@@ -4,8 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "costnotebook-frontend", "codenotebook-frontend\costnotebook-frontend.esproj", "{2DE4201A-2374-4FA6-B1C8-16C1272C1AD1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3DB83395-3B30-42AD-AFB8-693ADA9A4F82} = {3DB83395-3B30-42AD-AFB8-693ADA9A4F82}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "costnotebook-backend", "costnotebook-backend\costnotebook-backend.csproj", "{3DB83395-3B30-42AD-AFB8-693ADA9A4F82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "costnotebook-backend", "costnotebook-backend\costnotebook-backend.csproj", "{3DB83395-3B30-42AD-AFB8-693ADA9A4F82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,7 +18,6 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2DE4201A-2374-4FA6-B1C8-16C1272C1AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2DE4201A-2374-4FA6-B1C8-16C1272C1AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DE4201A-2374-4FA6-B1C8-16C1272C1AD1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{2DE4201A-2374-4FA6-B1C8-16C1272C1AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DE4201A-2374-4FA6-B1C8-16C1272C1AD1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2DE4201A-2374-4FA6-B1C8-16C1272C1AD1}.Release|Any CPU.Deploy.0 = Release|Any CPU
