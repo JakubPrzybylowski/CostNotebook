@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace costnotebook_backend.Models
 {
@@ -10,5 +11,6 @@ namespace costnotebook_backend.Models
         public string? LastName { get; set; }
 
         public string? UserEmail { get; set; }
+        public List<Transaction> Transactions { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using costnotebook_backend.Models;
 
@@ -11,9 +12,10 @@ using costnotebook_backend.Models;
 namespace costnotebook_backend.Migrations
 {
     [DbContext(typeof(CostNotebookDbContext))]
-    partial class CostNotebookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220810171721_AddTransaction")]
+    partial class AddTransaction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,17 +53,6 @@ namespace costnotebook_backend.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Transactions");
-
-                    b.HasData(
-                        new
-                        {
-                            TransactionId = 1,
-                            Amount = -50.68,
-                            Category = 0,
-                            Data = new DateTime(2021, 5, 12, 12, 52, 12, 0, DateTimeKind.Unspecified),
-                            Description = "IKEA",
-                            UserId = 4
-                        });
                 });
 
             modelBuilder.Entity("costnotebook_backend.Models.User", b =>

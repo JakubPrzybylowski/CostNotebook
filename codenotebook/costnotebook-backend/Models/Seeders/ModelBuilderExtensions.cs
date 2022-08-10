@@ -34,5 +34,15 @@ public static class ModelBuilderExtensions
                      UserEmail = "admin@admin.com"
                  }
         );
+
+        modelBuilder.Entity<Transaction>().HasData(new Transaction
+        {
+            TransactionId = 1,
+            Description = "IKEA",
+            Data = new DateTime(2021, 5, 12, 12, 52, 12),
+            Category = CategoryTransaction.FoodAndHouseholdChemistry,
+            Amount = -50.68,
+            UserId = 4,
+        });
     }
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
 
 
 export class AppComponent {
-  public loginForm!: FormGroup
+  public loginForm!: UntypedFormGroup
   //Form Validables 
-  registerForm: any = FormGroup;
+  registerForm: any = UntypedFormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router : Router) { }
+  constructor(private formBuilder: UntypedFormBuilder, private http: HttpClient, private router : Router) { }
   //Add user form actions
   get f() { return this.registerForm.controls; }
   onSubmit() {

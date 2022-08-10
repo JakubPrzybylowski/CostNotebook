@@ -20,7 +20,7 @@ export class LoginComponent {
 
   public login = (form: NgForm) => {
     const credentials = JSON.stringify(form.value);
-    this.http.post(this.url + "login", credentials, {
+    this.http.post('https://localhost:5001/api/login', credentials, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       })
@@ -29,7 +29,7 @@ export class LoginComponent {
       localStorage.setItem("jwt", token);
       this.invalidLogin = false;
       this.toastr.success("Logged In successfully");
-      this.router.navigate(["/product"]);
+      this.router.navigate(["/"]);
     }, err => {
       this.invalidLogin = true;
     });

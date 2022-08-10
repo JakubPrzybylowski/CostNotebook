@@ -66,12 +66,5 @@ namespace costnotebook_backend.Controllers
             }
             return Unauthorized();
         }
-
-        [HttpGet]
-        [Authorize]
-        public IActionResult GetUsers()
-        {
-            return Ok(_context.Users.ToList());
-        }
     }
 }

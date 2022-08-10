@@ -1,0 +1,7 @@
+body{
+    margin:auto
+}
+.parent {
+  min-height: 100vh;
+  width: 500vh;
+}
