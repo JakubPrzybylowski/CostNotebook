@@ -13,7 +13,6 @@ namespace costnotebook_backend.Models
         public CategoryTransaction Category { get; set; }
         public double Amount { get; set; }
         public int UserId { get; set; }
-        [JsonIgnore]
         public User User { get; set; }
     }
 }

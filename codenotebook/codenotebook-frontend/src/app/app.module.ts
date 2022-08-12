@@ -11,7 +11,7 @@ import { AuthGuard } from './authguard.service';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { ToastrModule } from 'ngx-toastr';
-import { BillsComponent } from './bills/bills.component';
+import { TransactionsComponent } from './transaction/transactions.component';
 import { SearchFilterPipe } from './search-filter.pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
@@ -19,7 +19,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'bill', component: BillsComponent, canActivate: [AuthGuard] },
+  { path: 'bill', component: TransactionsComponent, canActivate: [AuthGuard] },
 ];
 
 //function is use to get jwt token from local storage
@@ -32,8 +32,8 @@ export function tokenGetter() {
     AppComponent,
     HomepageComponent,
     LoginComponent,
-    BillsComponent,
-    SearchFilterPipe
+    TransactionsComponent,
+    SearchFilterPipe,
   ],
   imports: [
     BrowserModule,

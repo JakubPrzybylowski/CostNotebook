@@ -12,7 +12,6 @@ namespace costnotebook_backend.Models
         public string? LastName { get; set; }
 
         public string? UserEmail { get; set; }
-        [JsonIgnore]
-        public List<Transaction> Transactions { get; set; }
+        public List<Transaction>? Transactions { get; set; }
     }
 }

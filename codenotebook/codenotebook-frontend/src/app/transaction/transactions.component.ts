@@ -1,34 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { TransactionService } from '../transactions.service';
+import { TransactionService } from '../transaction.service';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../../models/user';
-import { Transaction } from '../../models/transaction';
+import { Transaction, TransactionCategory } from '../../models/transaction';
 
 @Component({
-  selector: 'app-transactions',
+  selector: 'app-bills',
   templateUrl: './transactions.component.html',
-  styleUrls: ['./Transactions.component.css']
+  styleUrls: ['./transactions.component.css']
 })
 export class TransactionsComponent implements OnInit {
-
+  TransactionCategory = TransactionCategory;
   TransactionList?: Observable<Transaction[]>;
   TransactionList1?: Observable<Transaction[]>;
-  transactionForm: any;
+  UserList2?: Transaction[];
+  productForm: any;
   massage = "";
+  prodCategory = "";
+  productId = 0;
   searchTerm = '';  
   public searchFilter: any = '';
-    prodCategory: string | undefined;
   constructor(private formbulider: FormBuilder,
     private transactionService: TransactionService, private router: Router,
     private jwtHelper: JwtHelperService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.prodCategory = "0";
-    this.transactionForm = this.formbulider.group({
+    this.productForm = this.formbulider.group({
       productName: ['', [Validators.required]],
       productCost: ['', [Validators.required]],
       productDescription: ['', [Validators.required]],

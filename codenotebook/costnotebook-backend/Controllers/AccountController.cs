@@ -41,10 +41,6 @@ namespace costnotebook_backend.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] Login user)
         {
-            if (user is null)
-            {
-                return BadRequest("Invalid user request!!!");
-            }
             var users = _context.Users.ToList();
             var isCorrectUser = users.Where(x => x.UserEmail == user.UserName && x.Password == user.Password).ToList().Any();
             if (isCorrectUser)
@@ -61,10 +57,11 @@ namespace costnotebook_backend.Controllers
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
                 return Ok(new AuthResponseDto
                 {
+                    IsAuthSuccessful = true, 
                     Token = tokenString
                 });
             }
-            return Unauthorized();
+            return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid Authentication" });
         }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using costnotebook_backend.Models.Dto;
+using costnotebook_backend.Repository;
 
 namespace costnotebook_backend.Controllers
 {
@@ -10,13 +11,15 @@ namespace costnotebook_backend.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        private CostNotebookDbContext _context;
-        private IMapper _mapper;
+        private readonly CostNotebookDbContext _context;
+        private readonly IMapper _mapper;
+        private readonly IRepositoryManager _repositoryManager;
 
-        public TransactionController(CostNotebookDbContext context, IMapper mapper)
+        public TransactionController(CostNotebookDbContext context, IMapper mapper, IRepositoryManager repositoryManager)
         {
             _context = context;
             _mapper = mapper;
+            _repositoryManager = repositoryManager;
         }
 
         [HttpGet("/transactions/{userId}")]
@@ -28,7 +31,8 @@ namespace costnotebook_backend.Controllers
             {
                 return BadRequest("Wrong user!");
             }
-            var transactions = _context.Transactions.ToList();
+
+            var transactions = _repositoryManager.Transaction.FindByCondition(x => x.UserId == userId,true);
             var respnse = _mapper.Map<List<TransactionDto>>(transactions);
             return Ok(respnse);
         }

@@ -8,6 +8,7 @@ using System.Text;
 using Newtonsoft.Json;
 using ConfigurationManager = costnotebook_backend.ConfigurationManager;
 using System.Text.Json.Serialization;
+using costnotebook_backend.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddControllers();
 //                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.ConfigureRepositoryManager();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("V1", new OpenApiInfo
@@ -69,7 +71,7 @@ builder.Services.AddAuthentication(opt => {
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(ConfigurationManager.AppSetting["JwtSettings:Secret"]))
     };
 });
-
+builder.Services.AddScoped<JwtHandler>();
 builder.Services.AddMvc();
 var app = builder.Build();
 

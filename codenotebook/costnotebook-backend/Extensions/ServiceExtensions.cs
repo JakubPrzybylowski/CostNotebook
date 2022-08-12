@@ -1,4 +1,5 @@
 ﻿using costnotebook_backend.Models;
+using costnotebook_backend.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace costnotebook_backend.Extensions
@@ -24,7 +25,7 @@ namespace costnotebook_backend.Extensions
 
                 opts.UseSqlServer(configuration.GetConnectionString("ConnectionString")));
 
-        //public static void ConfigureRepositoryManager(this IServiceCollection services) =>
-        //   services.AddScoped<IRepositoryManager, RepositoryManager>();
+        public static void ConfigureRepositoryManager(this IServiceCollection services) =>
+           services.AddScoped<IRepositoryManager, RepositoryManager>();
     }
 }

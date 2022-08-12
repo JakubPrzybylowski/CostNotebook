@@ -18,6 +18,7 @@ public static class ModelBuilderExtensions
                        {
                            UserID = 1,
                            FirstName = "Jakub",
+                           LastName = "Przy",
                            Password = "pass123",
                            UserEmail = "jakukprzybyl@gmail.com"
                        },
@@ -25,6 +26,7 @@ public static class ModelBuilderExtensions
                         {
                             UserID = 2,
                             FirstName = "Krzysztof",
+                            LastName = "Dob",
                             Password = "pass123",
                             UserEmail = "krzychudobrz@gmail.com"
                         },
@@ -32,6 +34,7 @@ public static class ModelBuilderExtensions
                         {
                             UserID = 3,
                             FirstName = "Łukasz",
+                            LastName = "Przy",
                             Password = "pass123",
                             UserEmail = "lukaszprzybyl@gmail.com"
                         },
@@ -39,6 +42,7 @@ public static class ModelBuilderExtensions
                          {
                              UserID = 4,
                              FirstName = "Admin",
+                             LastName = "Admin",
                              Password = "admin",
                              UserEmail = "admin@admin.com"
                          }
@@ -55,7 +59,7 @@ public static class ModelBuilderExtensions
                         TransactionId = 1,
                         Description = "IKEA",
                         Date = new DateTime(2021, 5, 12, 12, 52, 12),
-                        Category = CategoryTransaction.FoodAndHouseholdChemistry,
+                        Category = CategoryTransaction.RenovationAndGarden,
                         Amount = -50.68,
                         UserId = 4,
                     }, new Transaction

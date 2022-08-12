@@ -10,8 +10,12 @@
     <Script Include="**" Exclude="*.esproj;**\node_modules\**" />
   </ItemGroup>
   <ItemGroup>
+    <Script Remove="src\app\components\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Configuration\" />
-    <Folder Include="src\app\components\" />
+    <Folder Include=".vscode\" />
+    <Folder Include="services\" />
     <Folder Include="src\models\" />
   </ItemGroup>
   <!-- This target is copied from the ASP.NET SPA template in order to ensure node_modules are in place. -->
