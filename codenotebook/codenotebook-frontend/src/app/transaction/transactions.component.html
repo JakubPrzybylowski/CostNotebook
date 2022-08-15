@@ -12,7 +12,7 @@
         <a class="nav-link" (click)="logOut()">Logout</a>
       </li>
       <li *ngIf="!isUserAuthenticated()" class="nav-item active">
-        <a class="nav-link" routerLink="/bill">Bills</a>
+        <a class="nav-link" routerLink="/transaction">Transactions</a>
       </li>
     </ul>
   </div>
@@ -35,11 +35,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of UserList | async;">
-        <td>{{user.date}}</td>
-        <td>{{user.description}}</td>
-        <td>{{TransactionCategory[user.category]}}</td>
-        <td>{{user.amount}}zł</td>
+      <tr *ngFor="let transaction of TransactionList | async;">
+        <td>{{transaction.date}}</td>
+        <td>{{transaction.description}}</td>
+        <td>{{TransactionCategory[transaction.category]}}</td>
+        <td>{{transaction.amount}}zł</td>
       </tr>
     </tbody>
   </table>

@@ -19,7 +19,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'bill', component: TransactionsComponent, canActivate: [AuthGuard] },
+  { path: 'transaction', component: TransactionsComponent, canActivate: [AuthGuard] },
 ];
 
 //function is use to get jwt token from local storage
