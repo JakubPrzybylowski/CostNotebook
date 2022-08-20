@@ -22,17 +22,18 @@ namespace costnotebook_backend.Controllers
             _repositoryManager = repositoryManager;
         }
 
-        [HttpGet("/transactions/{userId}")]
+        [HttpGet("/transactions")]
         [Authorize]
-        public IActionResult GetTransactionForUser([FromRoute] int userId)
+        public IActionResult GetTransactionForUser([FromQuery] string userEmail)
         {
-            var user = _context.Users.First(x => x.UserID == userId);
+            var user = _context.Users.First(x => x.UserEmail == userEmail);    
+
             if (user == null)
             {
                 return BadRequest("Wrong user!");
             }
 
-            var transactions = _repositoryManager.Transaction.FindByCondition(x => x.UserId == userId,true);
+            var transactions = _repositoryManager.Transaction.FindByCondition(x => x.UserId == user.UserID,true);
             var respnse = _mapper.Map<List<TransactionDto>>(transactions);
             return Ok(respnse);
         }

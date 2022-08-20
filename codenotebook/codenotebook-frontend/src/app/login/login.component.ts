@@ -5,6 +5,9 @@ import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
+import { User } from '../../models/user';
+import { last } from 'rxjs';
+import { AuthGuard } from '../authguard.service';
 
 @Component({
   selector: 'login',
@@ -16,7 +19,7 @@ export class LoginComponent {
   url = environment + '/api/login';
 
   constructor(private router: Router, private http: HttpClient, private jwtHelper: JwtHelperService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService, private authService : AuthGuard  ) { }
 
   public login = (form: NgForm) => {
     const credentials = JSON.stringify(form.value);
@@ -30,11 +33,11 @@ export class LoginComponent {
       this.invalidLogin = false;
       this.toastr.success("Logged In successfully");
       this.router.navigate(["/"]);
+
     }, err => {
       this.invalidLogin = true;
     });
   }
-
   isUserAuthenticated() {
     const token = localStorage.getItem("jwt");
     if (token && !this.jwtHelper.isTokenExpired(token)) {

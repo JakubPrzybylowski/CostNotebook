@@ -15,13 +15,21 @@ export class TransactionService {
   url = 'https://localhost:5001/transactions';
   constructor(private http: HttpClient) { }
   getUserList() {
-    const header = new HttpHeaders().set('Authorization', 'Bearer' + localStorage.getItem('jwt'));
-    //let params = new HttpParams().set("userId", 4);
-    this.http.get<Transaction[]>(this.url + '/4', { headers: header }).subscribe(data => {
-      this.dataStore.users = data;
-      this._users.next(Object.assign({}, this.dataStore).users);
-    },
-      error => console.log('Could not load transactions.'));
-  }
 
+    let token = localStorage.getItem('jwt');
+    if (token != null)
+    {
+      let decodedJWT = JSON.parse(window.atob(token.split('.')[1]));
+    
+
+      let email = decodedJWT['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
+      const header = new HttpHeaders().set('Authorization', 'Bearer' + localStorage.getItem('jwt'));
+      let params = new HttpParams().set("userEmail", email);
+      this.http.get<Transaction[]>(this.url, { headers: header, params: params }).subscribe(data => {
+        this.dataStore.users = data;
+        this._users.next(Object.assign({}, this.dataStore).users);
+      },
+        error => console.log('Could not load transactions.'));
+    }
+  }
 }

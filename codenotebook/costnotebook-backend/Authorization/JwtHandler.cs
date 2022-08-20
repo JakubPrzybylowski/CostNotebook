@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using costnotebook_backend.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -21,11 +22,14 @@ namespace costnotebook_backend.Authorization
             var secret = new SymmetricSecurityKey(key);
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
         }
-        public List<Claim> GetClaims(IdentityUser user)
+        public static  List<Claim> GetClaims(User user)
         {
             var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, user.Email)
+                new Claim(ClaimTypes.Email, user.UserEmail),
+                new Claim(ClaimTypes.Name, user.FirstName),
+                new Claim(ClaimTypes.Surname, user.LastName),
+                new Claim(ClaimTypes.NameIdentifier, user.UserID.ToString()),
         };
             return claims;
         }

@@ -3,18 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace costnotebook_backend.Repository
 {
-    public class TransactionRepository : ITransactionRepository
+    public class TransactionRepository : RepositoryBase<Transaction>, ITransactionRepository
     {
-        private readonly CostNotebookDbContext _context;
-
-        public TransactionRepository(CostNotebookDbContext context)
-        {
-            _context = context;
-        }
-
-        public IEnumerable<DbLoggerCategory.Database.Transaction> GetAllTransactions(bool trackChanges)
-        {
-            throw new NotImplementedException();
-        }
+        public TransactionRepository(CostNotebookDbContext context) : base(context)
+        { }
     }
 }

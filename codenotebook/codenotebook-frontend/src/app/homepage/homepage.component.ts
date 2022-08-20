@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '../../models/user';
+import { AuthGuard } from '../authguard.service';
 
 @Component({
   selector: 'app-homepage',
@@ -8,8 +10,15 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent {
+  loginUser!: User;
+  constructor(private jwtHelper: JwtHelperService, private router: Router, private authguardService: AuthGuard) {
+  }
 
-  constructor(private jwtHelper: JwtHelperService, private router: Router) {
+  ngOnInit() {
+    this.loginUser = this.authguardService.getUser();
+  }
+  ngOnChanges() {
+    this.loginUser = this.authguardService.getUser();
   }
 
   isUserAuthenticated() {

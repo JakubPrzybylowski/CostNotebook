@@ -1,5 +1,6 @@
 ﻿using costnotebook_backend.Models;
 using costnotebook_backend.Models.Dto;
+using costnotebook_backend.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -13,11 +14,11 @@ namespace costnotebook_backend.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly CostNotebookDbContext _context;
+        private readonly IRepositoryManager _repositoryManager;
 
-        public AccountController(CostNotebookDbContext context)
-        {  
-            _context = context;
+        public AccountController(IRepositoryManager repositoryManager)
+        {
+            _repositoryManager = repositoryManager;
         }
 
         [HttpPost("Registration")]
@@ -39,26 +40,16 @@ namespace costnotebook_backend.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] Login user)
+        public IActionResult Login([FromBody] Login login)
         {
-            var users = _context.Users.ToList();
-            var isCorrectUser = users.Where(x => x.UserEmail == user.UserName && x.Password == user.Password).ToList().Any();
-            if (isCorrectUser)
+            var user = _repositoryManager.User.FindByCondition(x => x.UserEmail == login.UserName, true).FirstOrDefault();
+            if (user != null)
             {
-                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(ConfigurationManager.AppSetting["JWTSettings:Secret"]));
-                var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-                var tokeOptions = new JwtSecurityToken(
-                    issuer: ConfigurationManager.AppSetting["JWTSettings:ValidIssuer"],
-                    audience: ConfigurationManager.AppSetting["JWTSettings:ValidAudience"],
-                    claims: new List<Claim>(),
-                    expires: DateTime.Now.AddMinutes(6), 
-                    signingCredentials: signinCredentials
-                    );
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+                var result = _repositoryManager.Account.GetJwt(user);
                 return Ok(new AuthResponseDto
                 {
-                    IsAuthSuccessful = true, 
-                    Token = tokenString
+                    IsAuthSuccessful = true,
+                    Token = result
                 });
             }
             return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid Authentication" });

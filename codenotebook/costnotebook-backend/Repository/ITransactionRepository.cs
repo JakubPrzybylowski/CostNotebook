@@ -1,10 +1,9 @@
-﻿using System.Linq.Expressions;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+﻿
+using costnotebook_backend.Models;
 
 namespace costnotebook_backend.Repository
 {
-    public interface ITransactionRepository
+    public interface ITransactionRepository : IRepositoryBase<Transaction>
     {
-        IEnumerable<Transaction> GetAllTransactions(bool trackChanges);
     }
 }

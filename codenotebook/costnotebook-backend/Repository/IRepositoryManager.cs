@@ -6,7 +6,9 @@ namespace costnotebook_backend.Repository
 {
     public interface IRepositoryManager
     {
-        IRepositoryBase<Transaction> Transaction { get; }
+        ITransactionRepository Transaction { get; }
+        IAccountRepository Account { get; }
+        IUserRepository User { get; }
         void Save();
     }
 }
