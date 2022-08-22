@@ -1,9 +1,13 @@
 export class Transaction
 {
-    date!: Date 
+    date: string 
     description!: string
     category!: TransactionCategory
-    amount!: number
+  amount!: number
+
+  constructor(date : string,description: string, category: TransactionCategory, amount: number) {
+    this.date = date,this.description = description, this.category = category, this.amount = amount
+  }
 }
 export enum TransactionCategory {
   "Food And Household Chemistry" = 0,

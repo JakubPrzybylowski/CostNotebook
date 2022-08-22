@@ -7,6 +7,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../../models/user';
 import { Transaction, TransactionCategory } from '../../models/transaction';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AddTransacyionDialogComponent } from '../add-transacyion-dialog/add-transacyion-dialog.component';
 
 @Component({
   selector: 'app-bills',
@@ -26,8 +28,11 @@ export class TransactionsComponent implements OnInit {
   public searchFilter: any = '';
   constructor(private formbulider: FormBuilder,
     private transactionService: TransactionService, private router: Router,
-    private jwtHelper: JwtHelperService, private toastr: ToastrService) { }
+    private jwtHelper: JwtHelperService, private toastr: ToastrService, private dialog: MatDialog) { }
 
+  ngOnChanges() {
+    this.getProductList();
+  }
   ngOnInit() {
     this.prodCategory = "0";
     this.productForm = this.formbulider.group({
@@ -42,6 +47,15 @@ export class TransactionsComponent implements OnInit {
     this.transactionService.getUserList();
     this.TransactionList1 = this.transactionService.transactions;
     this.TransactionList = this.TransactionList1;
+  }
+
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open(AddTransacyionDialogComponent, dialogConfig).afterClosed().subscribe(() => this.getProductList());
   }
   //PostProduct(user: User) {
   //  const product_Master = this.productForm.value;

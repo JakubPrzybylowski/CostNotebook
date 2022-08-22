@@ -17,14 +17,20 @@
     </ul>
   </div>
 </nav>
-  <div class="container mt-5">
+<div class="container mt-5">
   <div class="form-group">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Search..."
-    />
+    <input type="text"
+           class="form-control"
+           placeholder="Search..." />
   </div>
+  <button mat-button style="background-color:green; margin-top:3%"  (click)="openDialog()">Add new transaction</button>
+  <ng-template #dialogRef let-mydata>
+    <h5>Hi I am Template Dialog following Foo list:</h5>
+    <ul *ngIf="mydata">
+      <li *ngFor="let item of mydata">{{item}}</li>
+    </ul>
+    <button mat-button mat-dialog-close="I am from dialog land...">Close</button>
+  </ng-template>
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -36,7 +42,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let transaction of TransactionList | async;">
-        <td>{{transaction.date}}</td>
+        <td>{{transaction.date | date:"dd/MM/yyyy"}}</td>
         <td>{{transaction.description}}</td>
         <td>{{TransactionCategory[transaction.category]}}</td>
         <td>{{transaction.amount}}zł</td>

@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Add Transaction to your App</h2>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label [formControl]="description" style="margin-bottom:5%" required> Transaction Description</mat-label>
+    <input required matInput [(ngModel)]="description1">
+  </mat-form-field>
+
+  <p>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label [formControl]="amount" style="margin-bottom:5%" required> Amount of transaction</mat-label>
+      <input type="number" required matInput [(ngModel)]="amount1">
+      <span matPrefix>zł&nbsp;</span>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-select placeholder="Transaction category" [formControl]="type" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let type of eTransactionCategory  | keyvalue" [value]="type.value">
+          {{type.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+<p><mat-form-field>
+  <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="loading_date" [(ngModel)]="dateTime"  required>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field></p>
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+  <button style="margin-left:45%"class="mat-raised-button mat-primary" (click)="add()">Add</button>
+</mat-dialog-actions>

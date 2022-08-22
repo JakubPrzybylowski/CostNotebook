@@ -7,7 +7,7 @@ using costnotebook_backend.Repository;
 
 namespace costnotebook_backend.Controllers
 {
-    [Route("api/transaction")]
+    [Route("api/transactions")]
     [ApiController]
     public class TransactionController : ControllerBase
     {
@@ -22,11 +22,11 @@ namespace costnotebook_backend.Controllers
             _repositoryManager = repositoryManager;
         }
 
-        [HttpGet("/transactions")]
+        [HttpGet]
         [Authorize]
-        public IActionResult GetTransactionForUser([FromQuery] string userEmail)
+        public IActionResult GetTransactionForUser([FromQuery] int userId)
         {
-            var user = _context.Users.First(x => x.UserEmail == userEmail);    
+            var user = _context.Users.First(x => x.UserID == userId);    
 
             if (user == null)
             {
@@ -35,7 +35,24 @@ namespace costnotebook_backend.Controllers
 
             var transactions = _repositoryManager.Transaction.FindByCondition(x => x.UserId == user.UserID,true);
             var respnse = _mapper.Map<List<TransactionDto>>(transactions);
+            respnse.Reverse();
             return Ok(respnse);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult CreateTransaction([FromBody] TransactionDto transactionDto, [FromQuery] int userId)
+        {
+            var user = _context.Users.First(x => x.UserID == userId);
+            if (user == null)
+            {
+                return BadRequest("Wrong user!");
+            }
+            var transaction = _mapper.Map<Transaction>(transactionDto);
+            transaction.UserId = userId;
+            _repositoryManager.Transaction.Create(transaction);
+            _repositoryManager.Save();
+            return Ok("Trasaction added to database");
         }
     }
 }

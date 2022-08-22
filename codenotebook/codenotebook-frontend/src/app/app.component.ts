@@ -23,7 +23,7 @@ export class AppComponent {
       .subscribe(res => {
         const user = res.find((a: any) => {
           return a.userEmail === this.registerForm.value.email && a.password === this.registerForm.value.password
-        });
+        }); 
         if (user) {
           alert('Login Succesful');
         } else {

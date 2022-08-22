@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { JwtModule } from "@auth0/angular-jwt";
 import { AuthGuard } from './authguard.service';
@@ -14,7 +14,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { TransactionsComponent } from './transaction/transactions.component';
 import { SearchFilterPipe } from './search-filter.pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../material.module';
+import { AddTransacyionDialogComponent } from './add-transacyion-dialog/add-transacyion-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule, CurrencyPipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 //all components routes
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -34,6 +40,7 @@ export function tokenGetter() {
     LoginComponent,
     TransactionsComponent,
     SearchFilterPipe,
+    AddTransacyionDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +48,9 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     Ng2SearchPipeModule,
+    MaterialModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     JwtModule.forRoot({
       config: {
@@ -51,7 +61,8 @@ export function tokenGetter() {
     }),
     ToastrModule.forRoot()
   ],
-  providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  providers: [AuthGuard, CurrencyPipe, DatePipe],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }
