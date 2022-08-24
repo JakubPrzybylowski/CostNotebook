@@ -10,6 +10,7 @@ namespace costnotebook_backend.Maps
         { 
             CreateMap<UserForRegistrationDto, User>();
             CreateMap<Transaction, TransactionDto>()
+                .ForMember(dest => dest.id, opt => opt.MapFrom(src => src.TransactionId))
                 .ForMember(dest => dest.Date,opt=>opt.MapFrom(src=>src.Date))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category))

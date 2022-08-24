@@ -15,9 +15,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
-//builder.Services.AddControllers().AddJsonOptions(x =>
-//                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigureRepositoryManager();
 builder.Services.AddSwaggerGen(options =>
@@ -49,11 +46,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
-builder.Services.ConfigureCors();
-builder.Services.ConfigureIISIntegration();
-builder.Services.AddDbContext<CostNotebookDbContext>(opts =>
-      opts.UseSqlServer(builder.Configuration["Data:DefaultConnection:ConnectionString"]));
-
+builder.Services.ConfigureSqlContext(builder.Configuration);
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 builder.Services.AddAuthentication(opt => {
@@ -88,7 +81,6 @@ app.UseCors(x => x
             .AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader());
-
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

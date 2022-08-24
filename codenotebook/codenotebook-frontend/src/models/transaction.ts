@@ -1,9 +1,10 @@
 export class Transaction
 {
+    id!: number
     date: string 
-    description!: string
-    category!: TransactionCategory
-  amount!: number
+    description: string
+    category: TransactionCategory
+  amount: number
 
   constructor(date : string,description: string, category: TransactionCategory, amount: number) {
     this.date = date,this.description = description, this.category = category, this.amount = amount

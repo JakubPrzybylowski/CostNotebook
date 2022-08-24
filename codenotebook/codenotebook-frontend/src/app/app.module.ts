@@ -21,6 +21,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { DatePipe } from '@angular/common';
+import { NgChartsModule } from 'ng2-charts';
+import { ExpInlfuDataService } from './exp-inlfu-data-service.service';
+
 //all components routes
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -42,7 +45,7 @@ export function tokenGetter() {
     SearchFilterPipe,
     AddTransacyionDialogComponent,
   ],
-  imports: [
+  imports: [NgChartsModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
@@ -61,7 +64,7 @@ export function tokenGetter() {
     }),
     ToastrModule.forRoot()
   ],
-  providers: [AuthGuard, CurrencyPipe, DatePipe],
+  providers: [AuthGuard, CurrencyPipe, DatePipe, ExpInlfuDataService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

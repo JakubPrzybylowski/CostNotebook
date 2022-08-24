@@ -23,7 +23,7 @@ namespace costnotebook_backend.Extensions
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
             services.AddDbContext<CostNotebookDbContext>(opts =>
 
-                opts.UseSqlServer(configuration.GetConnectionString("ConnectionString")));
+                opts.UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"]));
 
         public static void ConfigureRepositoryManager(this IServiceCollection services) =>
            services.AddScoped<IRepositoryManager, RepositoryManager>();
