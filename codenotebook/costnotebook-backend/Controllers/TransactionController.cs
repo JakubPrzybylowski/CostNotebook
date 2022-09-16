@@ -39,6 +39,20 @@ namespace costnotebook_backend.Controllers
             return Ok(respnse);
         }
 
+        [HttpGet("api/transactions/totalPositiveAmounts")]
+        public IActionResult GetTotalPositiveAmountTransactionsForMonths()
+        {
+            var response = _repositoryManager.Transaction.GetTotalPositiveAmountTransactionsForMonths();
+            return Ok(response);
+        }
+
+        [HttpGet("api/transactions/totalNegativeAmounts")]
+        public IActionResult GetTotalNegativeAmountTransactionsForMonths()
+        {
+            var response = _repositoryManager.Transaction.GetTotalNegativeAmountTransactionsForMonths();
+            return Ok(response);
+        }
+
         [HttpPost]
         [Authorize]
         public IActionResult CreateTransaction([FromBody] TransactionDto transactionDto, [FromQuery] int userId)
