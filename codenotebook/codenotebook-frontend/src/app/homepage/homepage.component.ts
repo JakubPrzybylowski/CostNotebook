@@ -4,8 +4,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../../models/user';
 import { AuthGuard } from '../authguard.service';
 import { ExpInlfuDataService } from '../exp-inlfu-data-service.service';
-import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
+import { Chart, ChartDataset, ChartOptions, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import {TransactionService} from 'src/app/transaction.service'
 
 import * as Highcharts from 'highcharts';
 
@@ -23,12 +24,13 @@ export class HomepageComponent {
   public barChartOptions: ChartOptions = {
     responsive: true
   }
+  public chart: any;
   public activity:any;
   public xData: any;
   public label: any;
   options: any;
   loginUser!: User;
-  constructor(private jwtHelper: JwtHelperService, private router: Router, private authguardService: AuthGuard, private _emp: ExpInlfuDataService) {
+  constructor(private jwtHelper: JwtHelperService, private router: Router, private authguardService: AuthGuard, private _emp: ExpInlfuDataService, private serviceTransaction: TransactionService) {
     this.options = {
       chart: {
         type: 'pie',
@@ -81,19 +83,39 @@ export class HomepageComponent {
 }
   test: any;
 
-  public barChartLabels: BaseChartDirective["labels"] = ['January ', 'February ', 'March', 'April', 'May',
-    'June ', 'July', 'August', 'September', 'October ', 'November', 'December'];
-  public barChartType: ChartType = 'bar';
-  public barChartLegend = true;
-  public barChartPlugins = [];
-  public barChartData: ChartDataset[] = [
-    { data: [5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000,], label: 'Income' },
-    { data: [3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000,], label: 'Outgoings' },
-  ];    
-      
+  createChart(positiveAmounts: number[],negativeAmounts: number[]) {
+    this.chart = new Chart("AmountTransactionBarChart", {
+      type: 'bar',
+
+      data: {
+        labels: ['2022-01', '2022-02', '2022-03', '2022-04', '2022-05', '2022-06', '2022-07', '2022-08',
+          '2022-09', '2022-10', '2022-11', '2022-12'],
+
+        datasets: [
+          {
+            label: "Profit",
+            data: positiveAmounts,
+            backgroundColor: '#309618'
+          },
+          {
+            label: "Expenses",
+            data: negativeAmounts,
+            backgroundColor: '#C5451C'
+          }
+        ]
+      },
+      options: {
+        aspectRatio:2.5
+      }
+    })
+  }
   ngOnInit() {
     this.loginUser = this.authguardService.getUser();
     Highcharts.chart('pieChart', this.options);
+    this.serviceTransaction.getTotalPositiveAmounts().subscribe(positiveAmounts => {
+      this.serviceTransaction.getTotalNegativeAmounts().subscribe(negativeAmouts => this.createChart(positiveAmounts, negativeAmouts))
+    })
+
   }
   ngOnChanges() {
     this.loginUser = this.authguardService.getUser();

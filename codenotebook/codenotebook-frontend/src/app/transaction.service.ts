@@ -50,5 +50,11 @@ export class TransactionService {
       },
         error => console.log('Could not load transactions.'));
     }
-    }
+  }
+  getTotalPositiveAmounts() {
+    return this.http.get<number[]>('https://localhost:5001/api/transactions/api/transactions/totalPositiveAmounts')
+  }
+  getTotalNegativeAmounts() {
+    return this.http.get<number[]>('https://localhost:5001/api/transactions/api/transactions/totalNegativeAmounts')
+  }
   }

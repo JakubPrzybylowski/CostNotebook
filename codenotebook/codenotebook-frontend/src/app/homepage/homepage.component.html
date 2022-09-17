@@ -41,15 +41,8 @@
     <div class='qbottom'>
       <div class='quodrant3'>
         <h1>Annual Inocomings and Outcomigns</h1>
-        <div style="display: block;">
-          <canvas baseChart
-                  [datasets]="barChartData"
-                  [labels]="barChartLabels"
-                  [options]="barChartOptions"
-                  [plugins]="barChartPlugins"
-                  [legend]="barChartLegend"
-                  [type]="barChartType">
-          </canvas>
+        <div class="chart-container">
+          <canvas id="AmountTransactionBarChart">{{ chart }}</canvas>
         </div>
       </div>
       <div class='quodrant4'></div>
