@@ -11,6 +11,7 @@ import {TransactionService} from 'src/app/transaction.service'
 import * as Highcharts from 'highcharts';
 
 import highcharts3D from 'highcharts/highcharts-3d';
+import { TransactionCategory } from '../../models/transaction';
 highcharts3D(Highcharts);
 
 
@@ -30,58 +31,27 @@ export class HomepageComponent {
   public label: any;
   options: any;
   loginUser!: User;
-  constructor(private jwtHelper: JwtHelperService, private router: Router, private authguardService: AuthGuard, private _emp: ExpInlfuDataService, private serviceTransaction: TransactionService) {
-    this.options = {
-      chart: {
-        type: 'pie',
-        options3d: {
-          enabled: true,
-          alpha: 45,
-          beta: 0
-        }
-      },
-      title: {
-        text: 'Monthly expenses with categories'
-      },
-      accessibility: {
-        point: {
-          valueSuffix: '%'
-        }
-      },
-      tooltip: {
-        pointFormat: '{series.name}: {point.percentage:.1f}%'
-      },
-      plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          depth: 35,
-          dataLabels: {
-            enabled: true,
-            format: '{point.name}'
-          }
-        }
-      },
-      series: [{
-        type: 'pie',
-        name: 'Expenses',
-        data: [
-          {
-            name: 'Groceries',
-            y: 45.0,
-            sliced: true,
-            selected: true
-      },
-          ['Chemical articles', 26.8],
-          ['Petrol station',12.8],
-          ['Attractions', 8.5],
-          ['Internet payments', 6.2],
-          ['Others', 0.7]
-        ]
-      }]
-    };
-}
+  constructor(private jwtHelper: JwtHelperService, private router: Router, private authguardService: AuthGuard, private _emp: ExpInlfuDataService, private serviceTransaction: TransactionService, private categoryTransaction:TransactionCategory) {}
   test: any;
+
+          { y: 120, name: TransactionCategory.FoodAndHouseholdChemistry },
+          { y: 300, name: TransactionCategory.Crossings },
+          { y: 800, name: TransactionCategory.Influences },
+          { y: 150, name: TransactionCategory.AccessoriesEquipment },
+          { y: 150, name: TransactionCategory.EatingOut },
+          { y: 250, name: TransactionCategory.Uncategorized },
+          { y: 120, name: TransactionCategory.OutingsAndEvents },
+          { y: 300, name: TransactionCategory.Current },
+          { y: 800, name: TransactionCategory.GiftsAndSupport },
+          { y: 150, name: TransactionCategory.Renumeration },
+          { y: 150, name: TransactionCategory.RegularSaving },
+          { y: 250, name: TransactionCategory.Flue },
+          { y: 120, name: TransactionCategory.RenovationAndGarden },
+          { y: 300, name: TransactionCategory.MultimediaBooksAndPress },
+          { y: 800, name: TransactionCategory.ClothingFootwear },
+          { y: 150, name: TransactionCategory.TvInternetTelephone },
+      
+  
 
   createChart(positiveAmounts: number[],negativeAmounts: number[]) {
     this.chart = new Chart("AmountTransactionBarChart", {

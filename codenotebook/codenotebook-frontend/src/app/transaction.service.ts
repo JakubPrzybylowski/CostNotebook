@@ -52,9 +52,13 @@ export class TransactionService {
     }
   }
   getTotalPositiveAmounts() {
-    return this.http.get<number[]>('https://localhost:5001/api/transactions/api/transactions/totalPositiveAmounts')
+    return this.http.get<number[]>('https://localhost:5001/api/transactions/api/transactions/positiveAmounts')
   }
   getTotalNegativeAmounts() {
-    return this.http.get<number[]>('https://localhost:5001/api/transactions/api/transactions/totalNegativeAmounts')
+    return this.http.get<number[]>('https://localhost:5001/api/transactions/api/transactions/negativeAmounts')
   }
+  GtTransactionsByCatergory() {
+    return this.http.get<number[]>('https://localhost:5001/api/transactions/api/transactions/category')
+  }
+
   }

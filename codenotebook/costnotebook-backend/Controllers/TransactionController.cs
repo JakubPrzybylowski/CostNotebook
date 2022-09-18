@@ -39,17 +39,24 @@ namespace costnotebook_backend.Controllers
             return Ok(respnse);
         }
 
-        [HttpGet("api/transactions/totalPositiveAmounts")]
+        [HttpGet("api/transactions/positiveAmounts")]
         public IActionResult GetTotalPositiveAmountTransactionsForMonths()
         {
             var response = _repositoryManager.Transaction.GetTotalPositiveAmountTransactionsForMonths();
             return Ok(response);
         }
 
-        [HttpGet("api/transactions/totalNegativeAmounts")]
+        [HttpGet("api/transactions/negativeAmounts")]
         public IActionResult GetTotalNegativeAmountTransactionsForMonths()
         {
             var response = _repositoryManager.Transaction.GetTotalNegativeAmountTransactionsForMonths();
+            return Ok(response);
+        }
+        [HttpGet("api/transactions/category")]
+
+        public IActionResult GetTransactionsByCatergory()
+        {
+            var response = _repositoryManager.Transaction.GetTransactionsByCatergory();
             return Ok(response);
         }
 

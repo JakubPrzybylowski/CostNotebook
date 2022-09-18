@@ -19,6 +19,70 @@ namespace costnotebook_backend.Repository
             var negativeTransactions = RepositoryContext.Transactions.Where(x => x.Amount < 0).ToList();
             return GetTotalAmountTransactionsForMonths(negativeTransactions).Select(x => x * -1).ToList();
         }
+        public List<double> GetTransactionsByCatergory()
+        {
+            var transactions = RepositoryContext.Transactions.ToList();
+
+            double[] countCategoryTransactions = new double[15];
+
+            foreach(Transaction transaction in transactions)
+            {
+                var category = transaction.Category;
+
+                switch (category)
+                {
+                    case CategoryTransaction.FoodAndHouseholdChemistry:
+                        countCategoryTransactions[0] += 1;
+                        break;
+                    case CategoryTransaction.Crossings:
+                        countCategoryTransactions[1] += 1;
+                        break;
+                    case CategoryTransaction.Influences:
+                        countCategoryTransactions[2] += 1;
+                        break;
+                    case CategoryTransaction.AccessoriesAndEquipment:
+                        countCategoryTransactions[3] += 1;
+                        break;
+                    case CategoryTransaction.EatingOut:
+                        countCategoryTransactions[4] += 1;
+                        break;
+                    case CategoryTransaction.Uncategorized:
+                        countCategoryTransactions[5] += 1;
+                        break;
+                    case CategoryTransaction.OutingsAndEvents:
+                        countCategoryTransactions[6] += 1;
+                        break;
+                    case CategoryTransaction.Current:
+                        countCategoryTransactions[7] += 1;
+                        break;
+                    case CategoryTransaction.GiftsAndSupport:
+                        countCategoryTransactions[8] += 1;
+                        break;
+                    case CategoryTransaction.Renumeration:
+                        countCategoryTransactions[9] += 1;
+                        break;
+                    case CategoryTransaction.RegularSaving:
+                        countCategoryTransactions[10] += 1;
+                        break;
+                    case CategoryTransaction.Flue:
+                        countCategoryTransactions[11] += 1;
+                        break;
+                    case CategoryTransaction.RenovationAndGarden:
+                        countCategoryTransactions[12] += 1;
+                        break;
+                    case CategoryTransaction.MultimediaBooksAndPress:
+                        countCategoryTransactions[13] += 1;
+                        break;
+                    case CategoryTransaction.ClothingAndFootwear:
+                        countCategoryTransactions[14] += 1;
+                        break;
+                    case CategoryTransaction.TvInternetTelephone:
+                        countCategoryTransactions[15] += 1;
+                        break;
+                } 
+            }
+            return countCategoryTransactions.ToList();
+        }
         private static  List<double> GetTotalAmountTransactionsForMonths(List<Transaction> transactions)
         {
             double[] amountTransactions = new double[12];
@@ -69,5 +133,7 @@ namespace costnotebook_backend.Repository
             }
             return amountTransactions.ToList();
         }
+
+       
     }
 }

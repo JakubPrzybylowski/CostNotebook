@@ -11,20 +11,20 @@ export class Transaction
   }
 }
 export enum TransactionCategory {
-  "Food And Household Chemistry" = 0,
+  "FoodAndHouseholdChemistry" = 0,
   "Crossings" = 1,
   "Influences" = 2,
-  "Accessories & Equipment" = 3,
-  "Eating Out" = 4,
+  "AccessoriesEquipment" = 3,
+  "EatingOut" = 4,
   "Uncategorized" =5,
-  'Outings And Events' =6,
+  'OutingsAndEvents' =6,
   'Current' =7,
-  'Gifts And Support' = 8,
+  'GiftsAndSupport' = 8,
   'Renumeration' = 9,
-  'Regular Saving' = 10,
+  'RegularSaving' = 10,
   'Flue' = 11,
-  'Renovation And Garden' =12,
-  'Multimedia,Books and Press' = 13,
-  'Clothing & Footwear' =14,
-  'Tv,Internet,Telephone' = 15
+  'RenovationAndGarden' =12,
+  'MultimediaBooksAndPress' = 13,
+  'ClothingFootwear' =14,
+  'TvInternetTelephone' = 15
 }

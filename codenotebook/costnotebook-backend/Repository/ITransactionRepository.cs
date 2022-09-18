@@ -7,5 +7,9 @@ namespace costnotebook_backend.Repository
     {
         List<double> GetTotalPositiveAmountTransactionsForMonths();
         List<double> GetTotalNegativeAmountTransactionsForMonths();
+
+        List<double> GetTransactionsByCatergory();
     }
+
 }
+
