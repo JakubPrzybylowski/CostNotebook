@@ -57,7 +57,7 @@ export class TransactionService {
   getTotalNegativeAmounts() {
     return this.http.get<number[]>('https://localhost:5001/api/transactions/api/transactions/negativeAmounts')
   }
-  GtTransactionsByCatergory() {
+  getTransactionsByCatergory() {
     return this.http.get<number[]>('https://localhost:5001/api/transactions/api/transactions/category')
   }
 

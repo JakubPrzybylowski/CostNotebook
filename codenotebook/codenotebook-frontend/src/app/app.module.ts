@@ -24,7 +24,7 @@ import { DatePipe } from '@angular/common';
 import { NgChartsModule } from 'ng2-charts';
 import { ExpInlfuDataService } from './exp-inlfu-data-service.service';
 import { HighchartsChartModule } from 'highcharts-angular';
-
+    
 //all components routes
 const routes: Routes = [
   { path: '', component: HomepageComponent },
