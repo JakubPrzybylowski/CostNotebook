@@ -23,7 +23,7 @@ namespace costnotebook_backend.Repository
         {
             var transactions = RepositoryContext.Transactions.ToList();
 
-            double[] countCategoryTransactions = new double[15];
+            double[] countCategoryTransactions = new double[16];
 
             foreach(Transaction transaction in transactions)
             {

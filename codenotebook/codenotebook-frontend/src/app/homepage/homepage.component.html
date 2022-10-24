@@ -21,13 +21,8 @@
     <div class='qtop'>
       <div class='quodrant1'>
         <h1 style="text-align:center">Monthly expenses</h1>
-        <div>
-          <canvas baseChart
-                  [type]="pieChartType"
-                  [data]="pieChartData"
-                  [labels]="pieChartLabels"
-                  [legend]="true">
-          </canvas>
+        <div class="chart-container">
+          <canvas id="AmountPieChart">{{ chart }}</canvas>
         </div>
       </div>
       <div class='quodrant2'>
