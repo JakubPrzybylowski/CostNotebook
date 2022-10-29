@@ -24,7 +24,8 @@ import { DatePipe } from '@angular/common';
 import { NgChartsModule } from 'ng2-charts';
 import { ExpInlfuDataService } from './exp-inlfu-data-service.service';
 import { HighchartsChartModule } from 'highcharts-angular';
-    
+import { MatIconModule } from '@angular/material/icon';
+
 //all components routes
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -47,6 +48,7 @@ export function tokenGetter() {
     AddTransacyionDialogComponent,
   ],
   imports: [NgChartsModule,
+    MatIconModule,
     HighchartsChartModule,
     BrowserModule,
     HttpClientModule,
