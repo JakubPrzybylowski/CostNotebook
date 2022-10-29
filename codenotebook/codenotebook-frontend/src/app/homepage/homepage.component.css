@@ -15,38 +15,35 @@
 .quodrant2,
 .quodrant3,
 .quodrant4 {
-  display: inline;
   float: left;
   width: 46%;
-  height: 96%;
-  border-radius: 30px;
-  margin: 1%;
-  padding: 2%;
-  border-style: outset;
-  margin-left:3%;
+  height: 100%;
+  margin-left: 3%;
 }
 
 .quodrant1 {
 }
 
 .quodrant2 {
-  position: relative;
-  border-style: outset;
-  font-family: Garamond, serif;
-  padding: 5%;
 }
+
   .quodrant2 img {
     position: absolute;
     top: 10%;
-    right: 10%;
-    height: 50%;
-    width: 25%;
+    height: 40%;
+    width: 20%;
     border-radius: 50%;
-
   }
+
+  .quodrant2 div {
+    padding: 3%;
+    height: 100%;
+    width: 50%;
+    float: left;
+  }
+
 .quodrant3 {
 }
 
 .quodrant4 {
 }
-

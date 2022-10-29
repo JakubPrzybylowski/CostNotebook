@@ -1,15 +1,15 @@
-<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#">CostNoteBook Application</a>
+<nav class="navbar navbar-expand-lg navbar  fixed-top" style="background-color: #072448">
+  <a class="navbar-brand" href="#" style="color:#f7a325; margin-left:1%;">CostNotebook Application</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/">Home</a>
+        <a class="nav-link" routerLink="/" style="color:#f7a325;">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="logOut()">Logout</a>
+        <a class="nav-link" routerLink style="color:#f7a325;" (click)="logOut()">Logout</a>
       </li>
       <li *ngIf="!isUserAuthenticated()" class="nav-item active">
         <a class="nav-link" routerLink="/transaction">Transactions</a>
@@ -23,7 +23,7 @@
            class="form-control"
            placeholder="Search..." />
   </div>
-  <button mat-button style="background-color:green; margin-top:3%"  (click)="openDialog()">Add new transaction</button>
+  <button mat-button style="background-color: #072448; color: #f7a325; margin-top: 3% "  (click)="openDialog()">Add new transaction</button>
   <ng-template #dialogRef let-mydata>
     <h5>Hi I am Template Dialog following Foo list:</h5>
     <ul *ngIf="mydata">

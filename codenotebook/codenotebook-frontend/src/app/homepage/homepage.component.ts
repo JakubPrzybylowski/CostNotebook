@@ -22,12 +22,12 @@ export class HomepageComponent {
     responsive: true
   }
   public chart: any;
-  public activity:any;
+  public activity: any;
   public xData: any;
   public label: any;
   options: any;
   loginUser!: User;
-  constructor(private jwtHelper: JwtHelperService, private router: Router, private authguardService: AuthGuard, private _emp: ExpInlfuDataService, private serviceTransaction: TransactionService) {}
+  constructor(private jwtHelper: JwtHelperService, private router: Router, private authguardService: AuthGuard, private _emp: ExpInlfuDataService, private serviceTransaction: TransactionService) { }
 
 
 
@@ -35,20 +35,20 @@ export class HomepageComponent {
     TransactionCategory[0], TransactionCategory[1], TransactionCategory[2], TransactionCategory[3], TransactionCategory[4], TransactionCategory[5], TransactionCategory[6],
     TransactionCategory[7], TransactionCategory[8], TransactionCategory[9], TransactionCategory[10], TransactionCategory[11], TransactionCategory[12], TransactionCategory[13],
     TransactionCategory[14], TransactionCategory[15]];
-    //CHART COLOR.
+  //CHART COLOR.
   pieChartColor: any = [
-        {
-  backgroundColor: ['rgba(30, 169, 224, 0.8)',
-    'rgba(255,165,0,0.9)',
-    'rgba(139, 136, 136, 0.9)',
-    'rgba(255, 161, 181, 0.9)',
-    'rgba(255, 102, 0, 0.9)',
-  ]
-}
+    {
+      backgroundColor: ['rgba(30, 169, 224, 0.8)',
+        'rgba(255,165,0,0.9)',
+        'rgba(139, 136, 136, 0.9)',
+        'rgba(255, 161, 181, 0.9)',
+        'rgba(255, 102, 0, 0.9)',
+      ]
+    }
   ]
 
 
-  public pieChartData1 : number[] = [];
+  public pieChartData1: number[] = [];
 
 
   // Pie
@@ -63,12 +63,12 @@ export class HomepageComponent {
     }
   };
   public pieChartData?: ChartData<'pie', number[], string | string[]>;
-  
+
   public pieChartType: ChartType = 'pie';
 
 
 
-  createChart(positiveAmounts: number[],negativeAmounts: number[]) {
+  createChart(positiveAmounts: number[], negativeAmounts: number[]) {
     this.chart = new Chart("AmountTransactionBarChart", {
       type: 'bar',
 
@@ -80,17 +80,17 @@ export class HomepageComponent {
           {
             label: "Profit",
             data: positiveAmounts,
-            backgroundColor: '#309618'
+            backgroundColor: '#12492f'
           },
           {
             label: "Expenses",
             data: negativeAmounts,
-            backgroundColor: '#C5451C'
+            backgroundColor: '#f56038'
           }
         ]
       },
       options: {
-        aspectRatio:2.5
+        aspectRatio: 2.5
       }
     })
   }
@@ -105,15 +105,17 @@ export class HomepageComponent {
         datasets: [
           {
             data: data1,
+            backgroundColor: ['#072448', '#54d2d2', '#ffcb00', '#f8aa4b', '#ff6150', '#12492f', '#0a2f35', '#f56038', '#f7a325', '#ffca7a', '#361d32', '#543c52', '#f55951', '#edd2cb', '#f1e8e6', '#f1e8e6']
           }
         ]
       },
       options: {
         aspectRatio: 2.1,
         responsive: true,
-        maintainAspectRatio: true
+        maintainAspectRatio: true,
       },
-      plugins: [DatalabelsPlugin]
+      plugins: [DatalabelsPlugin],
+
     })
   }
 
@@ -121,8 +123,8 @@ export class HomepageComponent {
     this.loginUser = this.authguardService.getUser();
     this.serviceTransaction.getTotalPositiveAmounts().subscribe(positiveAmounts => {
       this.serviceTransaction.getTotalNegativeAmounts().subscribe(negativeAmouts => this.createChart(positiveAmounts, negativeAmouts))
-    this.serviceTransaction.getTransactionsByCatergory().subscribe(data =>
-      this.createPieChart(data))
+      this.serviceTransaction.getTransactionsByCatergory().subscribe(data =>
+        this.createPieChart(data))
     })
 
   }
@@ -143,7 +145,7 @@ export class HomepageComponent {
   setData(array: number[]) {
     this.pieChartData1 = array;
   }
-  public  logOut = () => {
+  public logOut = () => {
     localStorage.removeItem("jwt");
   }
 
